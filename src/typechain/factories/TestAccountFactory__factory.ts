@@ -25,7 +25,7 @@ const _abi = [
     name: "accountImplementation",
     outputs: [
       {
-        internalType: "contract TestAccount",
+        internalType: "contract SparkAccount",
         name: "",
         type: "address",
       },
@@ -49,7 +49,7 @@ const _abi = [
     name: "createAccount",
     outputs: [
       {
-        internalType: "contract TestAccount",
+        internalType: "contract SparkAccount",
         name: "ret",
         type: "address",
       },

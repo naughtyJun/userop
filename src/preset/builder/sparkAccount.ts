@@ -10,21 +10,21 @@ import {
 import {
   EntryPoint,
   EntryPoint__factory,
-  TestAccountFactory,
-  TestAccountFactory__factory,
-  TestAccount as TestAccountImpl,
-  TestAccount__factory,
+  SparkAccountFactory,
+  SparkAccountFactory__factory,
+  SparkAccount as SparkAccountImpl,
+  SparkAccount__factory,
 } from "../../typechain";
 import { IPresetBuilderOpts, UserOperationMiddlewareFn } from "../../types";
 
-export class TestAccount extends UserOperationBuilder {
+export class SparkAccount extends UserOperationBuilder {
   private signer: ethers.Signer;
   private customerNo: string;
   private provider: ethers.providers.JsonRpcProvider;
   private entryPoint: EntryPoint;
-  private factory: TestAccountFactory;
+  private factory: SparkAccountFactory;
   private initCode: string;
-  proxy: TestAccountImpl;
+  proxy: SparkAccountImpl;
 
   private constructor(
     signer: ethers.Signer,
@@ -42,12 +42,12 @@ export class TestAccount extends UserOperationBuilder {
       opts?.entryPoint || ERC4337.EntryPoint,
       this.provider
     );
-    this.factory = TestAccountFactory__factory.connect(
+    this.factory = SparkAccountFactory__factory.connect(
       opts?.factory || "",
       this.provider
     );
     this.initCode = "0x";
-    this.proxy = TestAccount__factory.connect(
+    this.proxy = SparkAccount__factory.connect(
       ethers.constants.AddressZero,
       this.provider
     );
@@ -63,8 +63,8 @@ export class TestAccount extends UserOperationBuilder {
     customerNo: string,
     rpcUrl: string,
     opts?: IPresetBuilderOpts
-  ): Promise<TestAccount> {
-    const instance = new TestAccount(signer, customerNo, rpcUrl, opts);
+  ): Promise<SparkAccount> {
+    const instance = new SparkAccount(signer, customerNo, rpcUrl, opts);
 
     try {
       instance.initCode = await ethers.utils.hexConcat([
@@ -81,7 +81,7 @@ export class TestAccount extends UserOperationBuilder {
       const addr = error?.errorArgs?.sender;
       if (!addr) throw error;
 
-      instance.proxy = TestAccount__factory.connect(addr, instance.provider);
+      instance.proxy = SparkAccount__factory.connect(addr, instance.provider);
     }
 
     const base = instance

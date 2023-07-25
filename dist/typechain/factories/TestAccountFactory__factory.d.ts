@@ -25,7 +25,7 @@ export declare class TestAccountFactory__factory extends ContractFactory {
         readonly inputs: readonly [];
         readonly name: "accountImplementation";
         readonly outputs: readonly [{
-            readonly internalType: "contract TestAccount";
+            readonly internalType: "contract SparkAccount";
             readonly name: "";
             readonly type: "address";
         }];
@@ -43,7 +43,7 @@ export declare class TestAccountFactory__factory extends ContractFactory {
         }];
         readonly name: "createAccount";
         readonly outputs: readonly [{
-            readonly internalType: "contract TestAccount";
+            readonly internalType: "contract SparkAccount";
             readonly name: "ret";
             readonly type: "address";
         }];
