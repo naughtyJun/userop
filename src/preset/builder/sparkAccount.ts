@@ -1,7 +1,7 @@
-import { BigNumberish, BytesLike, ethers } from "ethers";
-import { ERC4337 } from "../../constants";
-import { UserOperationBuilder } from "../../builder";
-import { BundlerJsonRpcProvider } from "../../provider";
+import {BigNumberish, BytesLike, ethers} from "ethers";
+import {ERC4337} from "../../constants";
+import {UserOperationBuilder} from "../../builder";
+import {BundlerJsonRpcProvider} from "../../provider";
 import {
   EOASignature,
   estimateUserOperationGas,
@@ -15,7 +15,7 @@ import {
   SparkAccount as SparkAccountImpl,
   SparkAccount__factory,
 } from "../../typechain";
-import { IPresetBuilderOpts, UserOperationMiddlewareFn } from "../../types";
+import {IPresetBuilderOpts, UserOperationMiddlewareFn} from "../../types";
 
 export class SparkAccount extends UserOperationBuilder {
   private signer: ethers.Signer;
@@ -107,9 +107,9 @@ export class SparkAccount extends UserOperationBuilder {
     );
   }
 
-  executeBatch(to: Array<string>, data: Array<BytesLike>) {
+  executeBatch(to: Array<string>, value: Array<BigNumberish>, data: Array<BytesLike>) {
     return this.setCallData(
-      this.proxy.interface.encodeFunctionData("executeBatch", [to, data])
+      this.proxy.interface.encodeFunctionData("executeBatch", [to, value, data])
     );
   }
 }

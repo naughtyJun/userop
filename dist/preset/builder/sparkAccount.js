@@ -68,8 +68,8 @@ class SparkAccount extends builder_1.UserOperationBuilder {
     execute(to, value, data) {
         return this.setCallData(this.proxy.interface.encodeFunctionData("execute", [to, value, data]));
     }
-    executeBatch(to, data) {
-        return this.setCallData(this.proxy.interface.encodeFunctionData("executeBatch", [to, data]));
+    executeBatch(to, value, data) {
+        return this.setCallData(this.proxy.interface.encodeFunctionData("executeBatch", [to, value, data]));
     }
 }
 exports.SparkAccount = SparkAccount;
