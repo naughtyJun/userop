@@ -4,7 +4,7 @@ import {UserOperationBuilder} from "../../builder";
 import {BundlerJsonRpcProvider} from "../../provider";
 import {
   EOASignature,
-  estimateUserOperationGas,
+  estimateUserOperationGas, estimateUserOperationGasMulti,
   getGasPrice,
 } from "../middleware";
 import {
@@ -103,7 +103,7 @@ export class SparkAccountMulti extends UserOperationBuilder {
 
     const withPM = opts?.paymasterMiddleware
       ? base.useMiddleware(opts.paymasterMiddleware)
-      : base.useMiddleware(estimateUserOperationGas(instance.provider));
+      : base.useMiddleware(estimateUserOperationGasMulti(instance.provider));
 
     return withPM.useMiddleware(EOASignatureMulti(instance.signers));
   }
