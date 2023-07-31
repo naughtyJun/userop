@@ -55,8 +55,6 @@ export const estimateUserOperationGasMulti =
       ])) as GasEstimate;
 
       const newC = ethers.BigNumber.from(2000).add(ethers.BigNumber.from(est.verificationGas));
-      console.log(newC)
-      console.log(est.verificationGas)
       ctx.op.preVerificationGas = est.preVerificationGas;
       ctx.op.verificationGasLimit = newC;
       ctx.op.callGasLimit = est.callGasLimit;

@@ -43,8 +43,6 @@ const estimateUserOperationGasMulti = (provider) => (ctx) => __awaiter(void 0, v
         ctx.entryPoint,
     ]));
     const newC = ethers_1.ethers.BigNumber.from(2000).add(ethers_1.ethers.BigNumber.from(est.verificationGas));
-    console.log(newC);
-    console.log(est.verificationGas);
     ctx.op.preVerificationGas = est.preVerificationGas;
     ctx.op.verificationGasLimit = newC;
     ctx.op.callGasLimit = est.callGasLimit;
