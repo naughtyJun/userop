@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./kernel"), exports);
 __exportStar(require("./simpleAccount"), exports);
 __exportStar(require("./sparkAccount"), exports);
+__exportStar(require("./sparkAccountMulti"), exports);
