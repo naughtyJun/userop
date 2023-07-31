@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SparkAccountFactory__factory = exports.SparkAccount__factory = exports.SimpleAccountFactory__factory = exports.SimpleAccount__factory = exports.Multisend__factory = exports.KernelFactory__factory = exports.Kernel__factory = exports.EntryPoint__factory = exports.ECDSAValidator__factory = exports.ECDSAKernelFactory__factory = exports.factories = void 0;
+exports.SparkAccountMultiFactory__factory = exports.SparkAccountMulti__factory = exports.SparkAccountFactory__factory = exports.SparkAccount__factory = exports.SimpleAccountFactory__factory = exports.SimpleAccount__factory = exports.Multisend__factory = exports.KernelFactory__factory = exports.Kernel__factory = exports.EntryPoint__factory = exports.ECDSAValidator__factory = exports.ECDSAKernelFactory__factory = exports.factories = void 0;
 exports.factories = __importStar(require("./factories"));
 var ECDSAKernelFactory__factory_1 = require("./factories/ECDSAKernelFactory__factory");
 Object.defineProperty(exports, "ECDSAKernelFactory__factory", { enumerable: true, get: function () { return ECDSAKernelFactory__factory_1.ECDSAKernelFactory__factory; } });
@@ -45,3 +45,7 @@ var SparkAccount__factory_1 = require("./factories/SparkAccount__factory");
 Object.defineProperty(exports, "SparkAccount__factory", { enumerable: true, get: function () { return SparkAccount__factory_1.SparkAccount__factory; } });
 var SparkAccountFactory__factory_1 = require("./factories/SparkAccountFactory__factory");
 Object.defineProperty(exports, "SparkAccountFactory__factory", { enumerable: true, get: function () { return SparkAccountFactory__factory_1.SparkAccountFactory__factory; } });
+var SparkAccountMulti__factory_1 = require("./factories/SparkAccountMulti__factory");
+Object.defineProperty(exports, "SparkAccountMulti__factory", { enumerable: true, get: function () { return SparkAccountMulti__factory_1.SparkAccountMulti__factory; } });
+var SparkAccountMultiFactory__factory_1 = require("./factories/SparkAccountMultiFactory__factory");
+Object.defineProperty(exports, "SparkAccountMultiFactory__factory", { enumerable: true, get: function () { return SparkAccountMultiFactory__factory_1.SparkAccountMultiFactory__factory; } });

@@ -11,3 +11,5 @@ export { SimpleAccount__factory } from "./SimpleAccount__factory";
 export { SimpleAccountFactory__factory } from "./SimpleAccountFactory__factory";
 export { SparkAccount__factory } from "./SparkAccount__factory";
 export { SparkAccountFactory__factory } from "./SparkAccountFactory__factory";
+export { SparkAccountMulti__factory } from "./SparkAccountMulti__factory";
+export { SparkAccountMultiFactory__factory } from "./SparkAccountMultiFactory__factory";
