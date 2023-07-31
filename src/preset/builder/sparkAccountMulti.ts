@@ -2,18 +2,14 @@ import {BigNumberish, BytesLike, ethers} from "ethers";
 import {ERC4337} from "../../constants";
 import {UserOperationBuilder} from "../../builder";
 import {BundlerJsonRpcProvider} from "../../provider";
-import {
-  EOASignature,
-  estimateUserOperationGas, estimateUserOperationGasMulti,
-  getGasPrice,
-} from "../middleware";
+import {estimateUserOperationGasMulti, getGasPrice,} from "../middleware";
 import {
   EntryPoint,
   EntryPoint__factory,
-  SparkAccountMultiFactory,
-  SparkAccountMultiFactory__factory,
   SparkAccountMulti as SparkAccountImpl,
   SparkAccountMulti__factory,
+  SparkAccountMultiFactory,
+  SparkAccountMultiFactory__factory,
 } from "../../typechain";
 import {IPresetBuilderOpts, UserOperationMiddlewareFn} from "../../types";
 import {EOASignatureMulti} from "../middleware/signatureMulti";
@@ -103,7 +99,7 @@ export class SparkAccountMulti extends UserOperationBuilder {
 
     const withPM = opts?.paymasterMiddleware
       ? base.useMiddleware(opts.paymasterMiddleware)
-      : base.useMiddleware(estimateUserOperationGasMulti(instance.provider));
+      : base.useMiddleware(estimateUserOperationGasMulti(instance.provider, instance.signers.length));
 
     return withPM.useMiddleware(EOASignatureMulti(instance.signers));
   }

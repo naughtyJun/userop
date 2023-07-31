@@ -67,7 +67,7 @@ class SparkAccountMulti extends builder_1.UserOperationBuilder {
                 .useMiddleware((0, middleware_1.getGasPrice)(instance.provider));
             const withPM = (opts === null || opts === void 0 ? void 0 : opts.paymasterMiddleware)
                 ? base.useMiddleware(opts.paymasterMiddleware)
-                : base.useMiddleware((0, middleware_1.estimateUserOperationGasMulti)(instance.provider));
+                : base.useMiddleware((0, middleware_1.estimateUserOperationGasMulti)(instance.provider, instance.signers.length));
             return withPM.useMiddleware((0, signatureMulti_1.EOASignatureMulti)(instance.signers));
         });
     }
