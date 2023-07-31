@@ -39,3 +39,23 @@ export const estimateUserOperationGas =
     ctx.op.verificationGasLimit = est.verificationGas;
     ctx.op.callGasLimit = est.callGasLimit;
   };
+
+export const estimateUserOperationGasMulti =
+  (provider: ethers.providers.JsonRpcProvider): UserOperationMiddlewareFn =>
+    async (ctx) => {
+      if (ethers.BigNumber.from(ctx.op.nonce).isZero()) {
+        ctx.op.verificationGasLimit = ethers.BigNumber.from(
+          ctx.op.verificationGasLimit
+        ).add(await estimateCreationGas(provider, ctx.op.initCode));
+      }
+
+      const est = (await provider.send("eth_estimateUserOperationGas", [
+        OpToJSON(ctx.op),
+        ctx.entryPoint,
+      ])) as GasEstimate;
+
+      const newC = ethers.BigNumber.from(2000).add(ethers.BigNumber.from(est.callGasLimit));
+      ctx.op.preVerificationGas = est.preVerificationGas;
+      ctx.op.verificationGasLimit = newC;
+      ctx.op.callGasLimit = est.callGasLimit;
+    };

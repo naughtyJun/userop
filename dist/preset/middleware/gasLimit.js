@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.estimateUserOperationGas = void 0;
+exports.estimateUserOperationGasMulti = exports.estimateUserOperationGas = void 0;
 const ethers_1 = require("ethers");
 const utils_1 = require("../../utils");
 const estimateCreationGas = (provider, initCode) => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,3 +34,17 @@ const estimateUserOperationGas = (provider) => (ctx) => __awaiter(void 0, void 0
     ctx.op.callGasLimit = est.callGasLimit;
 });
 exports.estimateUserOperationGas = estimateUserOperationGas;
+const estimateUserOperationGasMulti = (provider) => (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    if (ethers_1.ethers.BigNumber.from(ctx.op.nonce).isZero()) {
+        ctx.op.verificationGasLimit = ethers_1.ethers.BigNumber.from(ctx.op.verificationGasLimit).add(yield estimateCreationGas(provider, ctx.op.initCode));
+    }
+    const est = (yield provider.send("eth_estimateUserOperationGas", [
+        (0, utils_1.OpToJSON)(ctx.op),
+        ctx.entryPoint,
+    ]));
+    const newC = ethers_1.ethers.BigNumber.from(2000).add(ethers_1.ethers.BigNumber.from(est.callGasLimit));
+    ctx.op.preVerificationGas = est.preVerificationGas;
+    ctx.op.verificationGasLimit = newC;
+    ctx.op.callGasLimit = est.callGasLimit;
+});
+exports.estimateUserOperationGasMulti = estimateUserOperationGasMulti;
