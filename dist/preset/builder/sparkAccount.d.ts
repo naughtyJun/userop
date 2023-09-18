@@ -12,7 +12,7 @@ export declare class SparkAccount extends UserOperationBuilder {
     proxy: SparkAccountImpl;
     private constructor();
     private resolveAccount;
-    static init(signer: ethers.Signer, customerNo: string, rpcUrl: string, opts?: IPresetBuilderOpts): Promise<SparkAccount>;
+    static init(signer: ethers.Signer, factorySigner: ethers.Signer, customerNo: string, rpcUrl: string, opts?: IPresetBuilderOpts): Promise<SparkAccount>;
     execute(to: string, value: BigNumberish, data: BytesLike): this;
     executeBatch(to: Array<string>, value: Array<BigNumberish>, data: Array<BytesLike>): this;
 }

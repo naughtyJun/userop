@@ -2,21 +2,17 @@ import {BigNumberish, BytesLike, ethers} from "ethers";
 import {ERC4337} from "../../constants";
 import {UserOperationBuilder} from "../../builder";
 import {BundlerJsonRpcProvider} from "../../provider";
-import {
-  EOASignature,
-  estimateUserOperationGas,
-  getGasPrice,
-} from "../middleware";
+import {EOASignature, estimateUserOperationGas, getGasPrice,} from "../middleware";
 import {
   EntryPoint,
   EntryPoint__factory,
-  SparkAccountFactory,
-  SparkAccountFactory__factory,
   SparkAccount as SparkAccountImpl,
   SparkAccount__factory,
+  SparkAccountFactory,
+  SparkAccountFactory__factory,
 } from "../../typechain";
 import {IPresetBuilderOpts, UserOperationMiddlewareFn} from "../../types";
-import {defaultAbiCoder} from "ethers/lib/utils";
+import {arrayify} from "ethers/lib/utils";
 
 export class SparkAccount extends UserOperationBuilder {
   private signer: ethers.Signer;
@@ -61,6 +57,7 @@ export class SparkAccount extends UserOperationBuilder {
 
   public static async init(
     signer: ethers.Signer,
+    factorySigner: ethers.Signer,
     customerNo: string,
     rpcUrl: string,
     opts?: IPresetBuilderOpts
@@ -68,7 +65,7 @@ export class SparkAccount extends UserOperationBuilder {
     const instance = new SparkAccount(signer, customerNo, rpcUrl, opts);
 
     const encodeData = await instance.factory.callStatic.encodeTransactionData(ethers.BigNumber.from(0), instance.accountNo, await instance.signer.getAddress());
-    const signature = await signer.signMessage(encodeData);
+    const signature = await factorySigner.signMessage(arrayify(encodeData));
     try {
       instance.initCode = await ethers.utils.hexConcat([
         instance.factory.address,

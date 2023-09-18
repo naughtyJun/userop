@@ -16,6 +16,7 @@ const builder_1 = require("../../builder");
 const provider_1 = require("../../provider");
 const middleware_1 = require("../middleware");
 const typechain_1 = require("../../typechain");
+const utils_1 = require("ethers/lib/utils");
 class SparkAccount extends builder_1.UserOperationBuilder {
     constructor(signer, accountNo, rpcUrl, opts) {
         super();
@@ -31,12 +32,12 @@ class SparkAccount extends builder_1.UserOperationBuilder {
         this.initCode = "0x";
         this.proxy = typechain_1.SparkAccount__factory.connect(ethers_1.ethers.constants.AddressZero, this.provider);
     }
-    static init(signer, customerNo, rpcUrl, opts) {
+    static init(signer, factorySigner, customerNo, rpcUrl, opts) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const instance = new SparkAccount(signer, customerNo, rpcUrl, opts);
             const encodeData = yield instance.factory.callStatic.encodeTransactionData(ethers_1.ethers.BigNumber.from(0), instance.accountNo, yield instance.signer.getAddress());
-            const signature = yield signer.signMessage(encodeData);
+            const signature = yield factorySigner.signMessage((0, utils_1.arrayify)(encodeData));
             try {
                 instance.initCode = yield ethers_1.ethers.utils.hexConcat([
                     instance.factory.address,
