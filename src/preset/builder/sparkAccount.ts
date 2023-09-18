@@ -16,10 +16,11 @@ import {
   SparkAccount__factory,
 } from "../../typechain";
 import {IPresetBuilderOpts, UserOperationMiddlewareFn} from "../../types";
+import {defaultAbiCoder} from "ethers/lib/utils";
 
 export class SparkAccount extends UserOperationBuilder {
   private signer: ethers.Signer;
-  private customerNo: string;
+  private accountNo: string;
   private provider: ethers.providers.JsonRpcProvider;
   private entryPoint: EntryPoint;
   private factory: SparkAccountFactory;
@@ -28,12 +29,12 @@ export class SparkAccount extends UserOperationBuilder {
 
   private constructor(
     signer: ethers.Signer,
-    customerNo: string,
+    accountNo: string,
     rpcUrl: string,
     opts?: IPresetBuilderOpts
   ) {
     super();
-    this.customerNo = customerNo;
+    this.accountNo = accountNo;
     this.signer = signer;
     this.provider = new BundlerJsonRpcProvider(rpcUrl).setBundlerRpc(
       opts?.overrideBundlerRpc
@@ -66,12 +67,16 @@ export class SparkAccount extends UserOperationBuilder {
   ): Promise<SparkAccount> {
     const instance = new SparkAccount(signer, customerNo, rpcUrl, opts);
 
+    const encodeData = await instance.factory.callStatic.encodeTransactionData(ethers.BigNumber.from(0), instance.accountNo, await instance.signer.getAddress());
+    const signature = await signer.signMessage(encodeData);
     try {
       instance.initCode = await ethers.utils.hexConcat([
         instance.factory.address,
         instance.factory.interface.encodeFunctionData("createAccount", [
-          instance.customerNo,
           ethers.BigNumber.from(0),
+          instance.accountNo,
+          await instance.signer.getAddress(),
+          signature,
         ]),
       ]);
       await instance.entryPoint.callStatic.getSenderAddress(instance.initCode);

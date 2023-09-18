@@ -4,7 +4,7 @@ import { SparkAccount as SparkAccountImpl } from "../../typechain";
 import { IPresetBuilderOpts } from "../../types";
 export declare class SparkAccount extends UserOperationBuilder {
     private signer;
-    private customerNo;
+    private accountNo;
     private provider;
     private entryPoint;
     private factory;

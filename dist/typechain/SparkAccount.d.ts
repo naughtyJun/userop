@@ -43,63 +43,72 @@ export type UserOperationStructOutput = [
 export interface SparkAccountInterface extends utils.Interface {
     functions: {
         "addDeposit()": FunctionFragment;
-        "customerNo()": FunctionFragment;
         "entryPoint()": FunctionFragment;
         "execute(address,uint256,bytes)": FunctionFragment;
         "executeBatch(address[],uint256[],bytes[])": FunctionFragment;
         "getDeposit()": FunctionFragment;
         "getNonce()": FunctionFragment;
+        "initOwnerAndSecurityModule(address,address)": FunctionFragment;
         "initialize(string)": FunctionFragment;
         "onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": FunctionFragment;
         "onERC1155Received(address,address,uint256,uint256,bytes)": FunctionFragment;
         "onERC721Received(address,address,uint256,bytes)": FunctionFragment;
         "owner()": FunctionFragment;
         "proxiableUUID()": FunctionFragment;
-        "setOwner(address)": FunctionFragment;
+        "resetOwner(address)": FunctionFragment;
+        "securityModule()": FunctionFragment;
         "supportsInterface(bytes4)": FunctionFragment;
         "tokensReceived(address,address,address,uint256,bytes,bytes)": FunctionFragment;
+        "transferOwner(address)": FunctionFragment;
+        "upgradeSecurityModule(address)": FunctionFragment;
         "upgradeTo(address)": FunctionFragment;
         "upgradeToAndCall(address,bytes)": FunctionFragment;
         "validateUserOp((address,uint256,bytes,bytes,uint256,uint256,uint256,uint256,uint256,bytes,bytes),bytes32,uint256)": FunctionFragment;
         "withdrawDepositTo(address,uint256)": FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "addDeposit" | "customerNo" | "entryPoint" | "execute" | "executeBatch" | "getDeposit" | "getNonce" | "initialize" | "onERC1155BatchReceived" | "onERC1155Received" | "onERC721Received" | "owner" | "proxiableUUID" | "setOwner" | "supportsInterface" | "tokensReceived" | "upgradeTo" | "upgradeToAndCall" | "validateUserOp" | "withdrawDepositTo"): FunctionFragment;
+    getFunction(nameOrSignatureOrTopic: "addDeposit" | "entryPoint" | "execute" | "executeBatch" | "getDeposit" | "getNonce" | "initOwnerAndSecurityModule" | "initialize" | "onERC1155BatchReceived" | "onERC1155Received" | "onERC721Received" | "owner" | "proxiableUUID" | "resetOwner" | "securityModule" | "supportsInterface" | "tokensReceived" | "transferOwner" | "upgradeSecurityModule" | "upgradeTo" | "upgradeToAndCall" | "validateUserOp" | "withdrawDepositTo"): FunctionFragment;
     encodeFunctionData(functionFragment: "addDeposit", values?: undefined): string;
-    encodeFunctionData(functionFragment: "customerNo", values?: undefined): string;
     encodeFunctionData(functionFragment: "entryPoint", values?: undefined): string;
     encodeFunctionData(functionFragment: "execute", values: [string, BigNumberish, BytesLike]): string;
     encodeFunctionData(functionFragment: "executeBatch", values: [string[], BigNumberish[], BytesLike[]]): string;
     encodeFunctionData(functionFragment: "getDeposit", values?: undefined): string;
     encodeFunctionData(functionFragment: "getNonce", values?: undefined): string;
+    encodeFunctionData(functionFragment: "initOwnerAndSecurityModule", values: [string, string]): string;
     encodeFunctionData(functionFragment: "initialize", values: [string]): string;
     encodeFunctionData(functionFragment: "onERC1155BatchReceived", values: [string, string, BigNumberish[], BigNumberish[], BytesLike]): string;
     encodeFunctionData(functionFragment: "onERC1155Received", values: [string, string, BigNumberish, BigNumberish, BytesLike]): string;
     encodeFunctionData(functionFragment: "onERC721Received", values: [string, string, BigNumberish, BytesLike]): string;
     encodeFunctionData(functionFragment: "owner", values?: undefined): string;
     encodeFunctionData(functionFragment: "proxiableUUID", values?: undefined): string;
-    encodeFunctionData(functionFragment: "setOwner", values: [string]): string;
+    encodeFunctionData(functionFragment: "resetOwner", values: [string]): string;
+    encodeFunctionData(functionFragment: "securityModule", values?: undefined): string;
     encodeFunctionData(functionFragment: "supportsInterface", values: [BytesLike]): string;
     encodeFunctionData(functionFragment: "tokensReceived", values: [string, string, string, BigNumberish, BytesLike, BytesLike]): string;
+    encodeFunctionData(functionFragment: "transferOwner", values: [string]): string;
+    encodeFunctionData(functionFragment: "upgradeSecurityModule", values: [string]): string;
     encodeFunctionData(functionFragment: "upgradeTo", values: [string]): string;
     encodeFunctionData(functionFragment: "upgradeToAndCall", values: [string, BytesLike]): string;
     encodeFunctionData(functionFragment: "validateUserOp", values: [UserOperationStruct, BytesLike, BigNumberish]): string;
     encodeFunctionData(functionFragment: "withdrawDepositTo", values: [string, BigNumberish]): string;
     decodeFunctionResult(functionFragment: "addDeposit", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "customerNo", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "entryPoint", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "execute", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "executeBatch", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getDeposit", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getNonce", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "initOwnerAndSecurityModule", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "initialize", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "onERC1155BatchReceived", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "onERC1155Received", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "onERC721Received", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "proxiableUUID", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "setOwner", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "resetOwner", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "securityModule", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "supportsInterface", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "tokensReceived", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "transferOwner", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "upgradeSecurityModule", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "upgradeTo", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "upgradeToAndCall", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "validateUserOp", data: BytesLike): Result;
@@ -108,13 +117,15 @@ export interface SparkAccountInterface extends utils.Interface {
         "AdminChanged(address,address)": EventFragment;
         "BeaconUpgraded(address)": EventFragment;
         "Initialized(uint8)": EventFragment;
-        "SimpleAccountInitialized(address,string)": EventFragment;
+        "OwnershipTransferred(address,address)": EventFragment;
+        "SecurityModuleChanged(address,address)": EventFragment;
         "Upgraded(address)": EventFragment;
     };
     getEvent(nameOrSignatureOrTopic: "AdminChanged"): EventFragment;
     getEvent(nameOrSignatureOrTopic: "BeaconUpgraded"): EventFragment;
     getEvent(nameOrSignatureOrTopic: "Initialized"): EventFragment;
-    getEvent(nameOrSignatureOrTopic: "SimpleAccountInitialized"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "OwnershipTransferred"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "SecurityModuleChanged"): EventFragment;
     getEvent(nameOrSignatureOrTopic: "Upgraded"): EventFragment;
 }
 export interface AdminChangedEventObject {
@@ -138,15 +149,24 @@ export interface InitializedEventObject {
 }
 export type InitializedEvent = TypedEvent<[number], InitializedEventObject>;
 export type InitializedEventFilter = TypedEventFilter<InitializedEvent>;
-export interface SimpleAccountInitializedEventObject {
-    entryPoint: string;
-    owner: string;
+export interface OwnershipTransferredEventObject {
+    previousOwner: string;
+    newOwner: string;
 }
-export type SimpleAccountInitializedEvent = TypedEvent<[
+export type OwnershipTransferredEvent = TypedEvent<[
     string,
     string
-], SimpleAccountInitializedEventObject>;
-export type SimpleAccountInitializedEventFilter = TypedEventFilter<SimpleAccountInitializedEvent>;
+], OwnershipTransferredEventObject>;
+export type OwnershipTransferredEventFilter = TypedEventFilter<OwnershipTransferredEvent>;
+export interface SecurityModuleChangedEventObject {
+    previousSecurityModule: string;
+    newSecurityModule: string;
+}
+export type SecurityModuleChangedEvent = TypedEvent<[
+    string,
+    string
+], SecurityModuleChangedEventObject>;
+export type SecurityModuleChangedEventFilter = TypedEventFilter<SecurityModuleChangedEvent>;
 export interface UpgradedEventObject {
     implementation: string;
 }
@@ -170,7 +190,6 @@ export interface SparkAccount extends BaseContract {
         addDeposit(overrides?: PayableOverrides & {
             from?: string;
         }): Promise<ContractTransaction>;
-        customerNo(overrides?: CallOverrides): Promise<[string]>;
         entryPoint(overrides?: CallOverrides): Promise<[string]>;
         execute(dest: string, value: BigNumberish, func: BytesLike, overrides?: Overrides & {
             from?: string;
@@ -180,7 +199,10 @@ export interface SparkAccount extends BaseContract {
         }): Promise<ContractTransaction>;
         getDeposit(overrides?: CallOverrides): Promise<[BigNumber]>;
         getNonce(overrides?: CallOverrides): Promise<[BigNumber]>;
-        initialize(_customerNo: string, overrides?: Overrides & {
+        initOwnerAndSecurityModule(newOwner: string, newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<ContractTransaction>;
+        initialize(_accountNo: string, overrides?: Overrides & {
             from?: string;
         }): Promise<ContractTransaction>;
         onERC1155BatchReceived(arg0: string, arg1: string, arg2: BigNumberish[], arg3: BigNumberish[], arg4: BytesLike, overrides?: CallOverrides): Promise<[string]>;
@@ -188,11 +210,18 @@ export interface SparkAccount extends BaseContract {
         onERC721Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BytesLike, overrides?: CallOverrides): Promise<[string]>;
         owner(overrides?: CallOverrides): Promise<[string]>;
         proxiableUUID(overrides?: CallOverrides): Promise<[string]>;
-        setOwner(_owner: string, overrides?: Overrides & {
+        resetOwner(newOwner: string, overrides?: Overrides & {
             from?: string;
         }): Promise<ContractTransaction>;
+        securityModule(overrides?: CallOverrides): Promise<[string]>;
         supportsInterface(interfaceId: BytesLike, overrides?: CallOverrides): Promise<[boolean]>;
         tokensReceived(arg0: string, arg1: string, arg2: string, arg3: BigNumberish, arg4: BytesLike, arg5: BytesLike, overrides?: CallOverrides): Promise<[void]>;
+        transferOwner(newOwner: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<ContractTransaction>;
+        upgradeSecurityModule(newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<ContractTransaction>;
         upgradeTo(newImplementation: string, overrides?: Overrides & {
             from?: string;
         }): Promise<ContractTransaction>;
@@ -209,7 +238,6 @@ export interface SparkAccount extends BaseContract {
     addDeposit(overrides?: PayableOverrides & {
         from?: string;
     }): Promise<ContractTransaction>;
-    customerNo(overrides?: CallOverrides): Promise<string>;
     entryPoint(overrides?: CallOverrides): Promise<string>;
     execute(dest: string, value: BigNumberish, func: BytesLike, overrides?: Overrides & {
         from?: string;
@@ -219,7 +247,10 @@ export interface SparkAccount extends BaseContract {
     }): Promise<ContractTransaction>;
     getDeposit(overrides?: CallOverrides): Promise<BigNumber>;
     getNonce(overrides?: CallOverrides): Promise<BigNumber>;
-    initialize(_customerNo: string, overrides?: Overrides & {
+    initOwnerAndSecurityModule(newOwner: string, newSecurityModule: string, overrides?: Overrides & {
+        from?: string;
+    }): Promise<ContractTransaction>;
+    initialize(_accountNo: string, overrides?: Overrides & {
         from?: string;
     }): Promise<ContractTransaction>;
     onERC1155BatchReceived(arg0: string, arg1: string, arg2: BigNumberish[], arg3: BigNumberish[], arg4: BytesLike, overrides?: CallOverrides): Promise<string>;
@@ -227,11 +258,18 @@ export interface SparkAccount extends BaseContract {
     onERC721Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BytesLike, overrides?: CallOverrides): Promise<string>;
     owner(overrides?: CallOverrides): Promise<string>;
     proxiableUUID(overrides?: CallOverrides): Promise<string>;
-    setOwner(_owner: string, overrides?: Overrides & {
+    resetOwner(newOwner: string, overrides?: Overrides & {
         from?: string;
     }): Promise<ContractTransaction>;
+    securityModule(overrides?: CallOverrides): Promise<string>;
     supportsInterface(interfaceId: BytesLike, overrides?: CallOverrides): Promise<boolean>;
     tokensReceived(arg0: string, arg1: string, arg2: string, arg3: BigNumberish, arg4: BytesLike, arg5: BytesLike, overrides?: CallOverrides): Promise<void>;
+    transferOwner(newOwner: string, overrides?: Overrides & {
+        from?: string;
+    }): Promise<ContractTransaction>;
+    upgradeSecurityModule(newSecurityModule: string, overrides?: Overrides & {
+        from?: string;
+    }): Promise<ContractTransaction>;
     upgradeTo(newImplementation: string, overrides?: Overrides & {
         from?: string;
     }): Promise<ContractTransaction>;
@@ -246,21 +284,24 @@ export interface SparkAccount extends BaseContract {
     }): Promise<ContractTransaction>;
     callStatic: {
         addDeposit(overrides?: CallOverrides): Promise<void>;
-        customerNo(overrides?: CallOverrides): Promise<string>;
         entryPoint(overrides?: CallOverrides): Promise<string>;
         execute(dest: string, value: BigNumberish, func: BytesLike, overrides?: CallOverrides): Promise<void>;
         executeBatch(dest: string[], value: BigNumberish[], func: BytesLike[], overrides?: CallOverrides): Promise<void>;
         getDeposit(overrides?: CallOverrides): Promise<BigNumber>;
         getNonce(overrides?: CallOverrides): Promise<BigNumber>;
-        initialize(_customerNo: string, overrides?: CallOverrides): Promise<void>;
+        initOwnerAndSecurityModule(newOwner: string, newSecurityModule: string, overrides?: CallOverrides): Promise<void>;
+        initialize(_accountNo: string, overrides?: CallOverrides): Promise<void>;
         onERC1155BatchReceived(arg0: string, arg1: string, arg2: BigNumberish[], arg3: BigNumberish[], arg4: BytesLike, overrides?: CallOverrides): Promise<string>;
         onERC1155Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BigNumberish, arg4: BytesLike, overrides?: CallOverrides): Promise<string>;
         onERC721Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BytesLike, overrides?: CallOverrides): Promise<string>;
         owner(overrides?: CallOverrides): Promise<string>;
         proxiableUUID(overrides?: CallOverrides): Promise<string>;
-        setOwner(_owner: string, overrides?: CallOverrides): Promise<void>;
+        resetOwner(newOwner: string, overrides?: CallOverrides): Promise<void>;
+        securityModule(overrides?: CallOverrides): Promise<string>;
         supportsInterface(interfaceId: BytesLike, overrides?: CallOverrides): Promise<boolean>;
         tokensReceived(arg0: string, arg1: string, arg2: string, arg3: BigNumberish, arg4: BytesLike, arg5: BytesLike, overrides?: CallOverrides): Promise<void>;
+        transferOwner(newOwner: string, overrides?: CallOverrides): Promise<void>;
+        upgradeSecurityModule(newSecurityModule: string, overrides?: CallOverrides): Promise<void>;
         upgradeTo(newImplementation: string, overrides?: CallOverrides): Promise<void>;
         upgradeToAndCall(newImplementation: string, data: BytesLike, overrides?: CallOverrides): Promise<void>;
         validateUserOp(userOp: UserOperationStruct, userOpHash: BytesLike, missingAccountFunds: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
@@ -273,8 +314,10 @@ export interface SparkAccount extends BaseContract {
         BeaconUpgraded(beacon?: string | null): BeaconUpgradedEventFilter;
         "Initialized(uint8)"(version?: null): InitializedEventFilter;
         Initialized(version?: null): InitializedEventFilter;
-        "SimpleAccountInitialized(address,string)"(entryPoint?: string | null, owner?: string | null): SimpleAccountInitializedEventFilter;
-        SimpleAccountInitialized(entryPoint?: string | null, owner?: string | null): SimpleAccountInitializedEventFilter;
+        "OwnershipTransferred(address,address)"(previousOwner?: string | null, newOwner?: string | null): OwnershipTransferredEventFilter;
+        OwnershipTransferred(previousOwner?: string | null, newOwner?: string | null): OwnershipTransferredEventFilter;
+        "SecurityModuleChanged(address,address)"(previousSecurityModule?: string | null, newSecurityModule?: string | null): SecurityModuleChangedEventFilter;
+        SecurityModuleChanged(previousSecurityModule?: string | null, newSecurityModule?: string | null): SecurityModuleChangedEventFilter;
         "Upgraded(address)"(implementation?: string | null): UpgradedEventFilter;
         Upgraded(implementation?: string | null): UpgradedEventFilter;
     };
@@ -282,7 +325,6 @@ export interface SparkAccount extends BaseContract {
         addDeposit(overrides?: PayableOverrides & {
             from?: string;
         }): Promise<BigNumber>;
-        customerNo(overrides?: CallOverrides): Promise<BigNumber>;
         entryPoint(overrides?: CallOverrides): Promise<BigNumber>;
         execute(dest: string, value: BigNumberish, func: BytesLike, overrides?: Overrides & {
             from?: string;
@@ -292,7 +334,10 @@ export interface SparkAccount extends BaseContract {
         }): Promise<BigNumber>;
         getDeposit(overrides?: CallOverrides): Promise<BigNumber>;
         getNonce(overrides?: CallOverrides): Promise<BigNumber>;
-        initialize(_customerNo: string, overrides?: Overrides & {
+        initOwnerAndSecurityModule(newOwner: string, newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<BigNumber>;
+        initialize(_accountNo: string, overrides?: Overrides & {
             from?: string;
         }): Promise<BigNumber>;
         onERC1155BatchReceived(arg0: string, arg1: string, arg2: BigNumberish[], arg3: BigNumberish[], arg4: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
@@ -300,11 +345,18 @@ export interface SparkAccount extends BaseContract {
         onERC721Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
         owner(overrides?: CallOverrides): Promise<BigNumber>;
         proxiableUUID(overrides?: CallOverrides): Promise<BigNumber>;
-        setOwner(_owner: string, overrides?: Overrides & {
+        resetOwner(newOwner: string, overrides?: Overrides & {
             from?: string;
         }): Promise<BigNumber>;
+        securityModule(overrides?: CallOverrides): Promise<BigNumber>;
         supportsInterface(interfaceId: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
         tokensReceived(arg0: string, arg1: string, arg2: string, arg3: BigNumberish, arg4: BytesLike, arg5: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+        transferOwner(newOwner: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<BigNumber>;
+        upgradeSecurityModule(newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<BigNumber>;
         upgradeTo(newImplementation: string, overrides?: Overrides & {
             from?: string;
         }): Promise<BigNumber>;
@@ -322,7 +374,6 @@ export interface SparkAccount extends BaseContract {
         addDeposit(overrides?: PayableOverrides & {
             from?: string;
         }): Promise<PopulatedTransaction>;
-        customerNo(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         entryPoint(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         execute(dest: string, value: BigNumberish, func: BytesLike, overrides?: Overrides & {
             from?: string;
@@ -332,7 +383,10 @@ export interface SparkAccount extends BaseContract {
         }): Promise<PopulatedTransaction>;
         getDeposit(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getNonce(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        initialize(_customerNo: string, overrides?: Overrides & {
+        initOwnerAndSecurityModule(newOwner: string, newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<PopulatedTransaction>;
+        initialize(_accountNo: string, overrides?: Overrides & {
             from?: string;
         }): Promise<PopulatedTransaction>;
         onERC1155BatchReceived(arg0: string, arg1: string, arg2: BigNumberish[], arg3: BigNumberish[], arg4: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -340,11 +394,18 @@ export interface SparkAccount extends BaseContract {
         onERC721Received(arg0: string, arg1: string, arg2: BigNumberish, arg3: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         proxiableUUID(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        setOwner(_owner: string, overrides?: Overrides & {
+        resetOwner(newOwner: string, overrides?: Overrides & {
             from?: string;
         }): Promise<PopulatedTransaction>;
+        securityModule(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         supportsInterface(interfaceId: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         tokensReceived(arg0: string, arg1: string, arg2: string, arg3: BigNumberish, arg4: BytesLike, arg5: BytesLike, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+        transferOwner(newOwner: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<PopulatedTransaction>;
+        upgradeSecurityModule(newSecurityModule: string, overrides?: Overrides & {
+            from?: string;
+        }): Promise<PopulatedTransaction>;
         upgradeTo(newImplementation: string, overrides?: Overrides & {
             from?: string;
         }): Promise<PopulatedTransaction>;

@@ -17,13 +17,13 @@ const provider_1 = require("../../provider");
 const middleware_1 = require("../middleware");
 const typechain_1 = require("../../typechain");
 class SparkAccount extends builder_1.UserOperationBuilder {
-    constructor(signer, customerNo, rpcUrl, opts) {
+    constructor(signer, accountNo, rpcUrl, opts) {
         super();
         this.resolveAccount = (ctx) => __awaiter(this, void 0, void 0, function* () {
             ctx.op.nonce = yield this.entryPoint.getNonce(ctx.op.sender, 0);
             ctx.op.initCode = ctx.op.nonce.eq(0) ? this.initCode : "0x";
         });
-        this.customerNo = customerNo;
+        this.accountNo = accountNo;
         this.signer = signer;
         this.provider = new provider_1.BundlerJsonRpcProvider(rpcUrl).setBundlerRpc(opts === null || opts === void 0 ? void 0 : opts.overrideBundlerRpc);
         this.entryPoint = typechain_1.EntryPoint__factory.connect((opts === null || opts === void 0 ? void 0 : opts.entryPoint) || constants_1.ERC4337.EntryPoint, this.provider);
@@ -35,12 +35,16 @@ class SparkAccount extends builder_1.UserOperationBuilder {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const instance = new SparkAccount(signer, customerNo, rpcUrl, opts);
+            const encodeData = yield instance.factory.callStatic.encodeTransactionData(ethers_1.ethers.BigNumber.from(0), instance.accountNo, yield instance.signer.getAddress());
+            const signature = yield signer.signMessage(encodeData);
             try {
                 instance.initCode = yield ethers_1.ethers.utils.hexConcat([
                     instance.factory.address,
                     instance.factory.interface.encodeFunctionData("createAccount", [
-                        instance.customerNo,
                         ethers_1.ethers.BigNumber.from(0),
+                        instance.accountNo,
+                        yield instance.signer.getAddress(),
+                        signature,
                     ]),
                 ]);
                 yield instance.entryPoint.callStatic.getSenderAddress(instance.initCode);
