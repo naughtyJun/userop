@@ -5,6 +5,7 @@ import {UserOperationMiddlewareFn} from "../../types";
 interface GasEstimate {
   preVerificationGas: BigNumberish;
   verificationGas: BigNumberish;
+  verificationGasLimit: BigNumberish;
   callGasLimit: BigNumberish;
 }
 
@@ -36,7 +37,7 @@ export const estimateUserOperationGas =
       ])) as GasEstimate;
 
       ctx.op.preVerificationGas = est.preVerificationGas;
-      ctx.op.verificationGasLimit = est.verificationGas;
+      ctx.op.verificationGasLimit = est.verificationGasLimit ? est.verificationGasLimit : est.verificationGas;
       ctx.op.callGasLimit = est.callGasLimit;
     };
 

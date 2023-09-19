@@ -30,7 +30,7 @@ const estimateUserOperationGas = (provider) => (ctx) => __awaiter(void 0, void 0
         ctx.entryPoint,
     ]));
     ctx.op.preVerificationGas = est.preVerificationGas;
-    ctx.op.verificationGasLimit = est.verificationGas;
+    ctx.op.verificationGasLimit = est.verificationGasLimit ? est.verificationGasLimit : est.verificationGas;
     ctx.op.callGasLimit = est.callGasLimit;
 });
 exports.estimateUserOperationGas = estimateUserOperationGas;
